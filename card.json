@@ -1,0 +1,4883 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "<h3>Alfred Cards API文件</h3></br><h4>Header參數說明：</h4><ul><li>x-LANGUAGE: 使用語言，測試可以使用tw</li><li>x-TIMESTAMP: 時間戳</li><li>x-VERSION: 版本，測試用2.4</li><li>x-PLATFORM: 平台，測試可使用android</li><li>x-SIGNATURE: 為language+platform+timestamp做MD5加密後的簽名</li><li>x-TOKEN: 登入後得到的token</li></ul>",
+    "version": "1.0.0",
+    "title": "Alfred Card API",
+    "contact": {}
+  },
+  "host": "cryptocards.guanfantech.com",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/v1/addRedeemVendor": {
+      "post": {
+        "tags": [
+          "Redeem"
+        ],
+        "summary": "新增兌換vendor",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>name: Vendor名稱</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.reqGenRedeemoVendor"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200"
+            }
+          }
+        }
+      }
+    },
+    "/v1/addStaff": {
+      "post": {
+        "tags": [
+          "Staff"
+        ],
+        "summary": "新增業務人員",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>email: 信箱</li><li>name: 業務人員名稱</li><li>storeId: 經銷商ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.addStaffRequest"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v1/delStaff": {
+      "delete": {
+        "tags": [
+          "Staff"
+        ],
+        "summary": "刪除業務人員",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>uid: 業務人員ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.delStaffRequest"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v1/delStore": {
+      "delete": {
+        "tags": [
+          "Store"
+        ],
+        "summary": "刪除經銷商",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 經銷商ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.delStoreRequest"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v1/detailCard": {
+      "post": {
+        "tags": [
+          "Card"
+        ],
+        "summary": "加密卡詳情",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>startAt: 起始時間</li><li>endAt: 結束時間</li><li>start: 卡片起始號碼</li><li>end: 卡片結束號碼</li><li>status: 卡片狀態</li><li>cardNumber: 卡片號碼</li><li>boxNumber: 卡盒號碼</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.reqListCard"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_1"
+            }
+          }
+        }
+      }
+    },
+    "/v1/detailTrxRecord": {
+      "post": {
+        "tags": [
+          "Trx Record"
+        ],
+        "summary": "訂單紀錄詳情",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>trxId: 交易紀錄ID</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.reqDetailTrxRecord"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_2"
+            }
+          }
+        }
+      }
+    },
+    "/v1/distributeCardbox": {
+      "post": {
+        "tags": [
+          "Card Box"
+        ],
+        "summary": "分發加密卡盒",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>boxNumber: 卡盒號碼</li><li>storeId: 經銷商ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.distributeCardboxRequest"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v1/distributeCards": {
+      "post": {
+        "tags": [
+          "Card"
+        ],
+        "summary": "分發加密卡",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>cardNumbers: 卡片號碼</li><li>storeId: 經銷商ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.distributeCardsRequest"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v1/distributeStaff": {
+      "post": {
+        "tags": [
+          "Staff"
+        ],
+        "summary": "分配業務人員",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>uids: 業務人員ID列表</li><li>storeId: 經銷商ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.DistributeStaffRequest"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v1/downloadAPK": {
+      "get": {
+        "tags": [
+          "Version"
+        ],
+        "summary": "下載app apk",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/v1/editCard": {
+      "post": {
+        "tags": [
+          "Card"
+        ],
+        "summary": "編輯加密卡",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>status: 卡片狀態</li><li>cardNumber: 卡片號碼</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.editCardsRequest"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v1/editStaff": {
+      "post": {
+        "tags": [
+          "Staff"
+        ],
+        "summary": "編輯業務人員",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>uid: 業務人員ID</li><li>name: 業務人員名稱</li><li>storeId: 經銷商ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.EditStaffRequest"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v1/exportOpenCard": {
+      "post": {
+        "tags": [
+          "Trx Record"
+        ],
+        "summary": "匯出訂單紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>startAt: 起始時間</li><li>endAt: 結束時間</li><li>storeId: 經銷商ID</li><li>email: 信箱</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.reqExportListTrxRecords"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v1/exportRedeemCard": {
+      "post": {
+        "tags": [
+          "Redeem"
+        ],
+        "summary": "匯出兌換紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>startAt: 起始時間</li><li>endAt: 結束時間</li><li>storeId: 經銷商ID</li><li>email: 信箱</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.reqListRedeemRecord"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v1/generateCards": {
+      "post": {
+        "tags": [
+          "Card"
+        ],
+        "summary": "創建加密卡",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>startAt: 起始時間</li><li>endAt: 結束時間</li><li>start: 卡片起始號碼</li><li>end: 卡片結束號碼</li><li>status: 卡片狀態</li><li>cardNumber: 卡片號碼</li><li>boxNumber: 卡盒號碼</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.generateCardRequest"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_1"
+            }
+          }
+        }
+      }
+    },
+    "/v1/listCard": {
+      "get": {
+        "tags": [
+          "Card"
+        ],
+        "summary": "獲取加密卡資訊",
+        "parameters": [
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_1"
+            }
+          }
+        }
+      }
+    },
+    "/v1/listCardBoxex": {
+      "get": {
+        "tags": [
+          "Card Box"
+        ],
+        "summary": "獲取加密卡盒資訊",
+        "parameters": [
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_3"
+            }
+          }
+        }
+      }
+    },
+    "/v1/listCardSets": {
+      "get": {
+        "tags": [
+          "Card"
+        ],
+        "summary": "卡片種類詳情",
+        "parameters": [
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_4"
+            }
+          }
+        }
+      }
+    },
+    "/v1/listCards": {
+      "post": {
+        "tags": [
+          "Card"
+        ],
+        "summary": "獲取所有加密卡資訊",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>startAt: 起始時間</li><li>endAt: 結束時間</li><li>start: 卡片起始號碼</li><li>end: 卡片結束號碼</li><li>status: 卡片狀態</li><li>cardNumber: 卡片號碼</li><li>boxNumber: 卡盒號碼</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.reqListCard"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_1"
+            }
+          }
+        }
+      }
+    },
+    "/v1/listRedeems": {
+      "post": {
+        "tags": [
+          "Redeem"
+        ],
+        "summary": "兌換加密卡紀錄列表",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>startAt: 起始時間</li><li>endAt: 結束時間</li><li>vendor: Vendor</li><li>redeemId: 兌換ID</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.reqListRedeemRecord"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v1/listStaff": {
+      "get": {
+        "tags": [
+          "Staff"
+        ],
+        "summary": "業務人員列表",
+        "parameters": [
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_6"
+            }
+          }
+        }
+      }
+    },
+    "/v1/listStaffEmail": {
+      "get": {
+        "tags": [
+          "Staff"
+        ],
+        "summary": "業務人員Email列表",
+        "parameters": [
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_6"
+            }
+          }
+        }
+      }
+    },
+    "/v1/listTrxRecords": {
+      "post": {
+        "tags": [
+          "Trx Record"
+        ],
+        "summary": "訂單紀錄列表",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>startAt: 起始時間</li><li>endAt: 結束時間</li><li>storeId: 經銷商ID</li><li>trxId: 訂單紀錄ID</li><li>status: 卡片狀態</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.reqListTrxRrecord"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_2"
+            }
+          }
+        }
+      }
+    },
+    "/v1/logCard": {
+      "get": {
+        "tags": [
+          "Card"
+        ],
+        "summary": "加密卡紀錄詳情",
+        "parameters": [
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_7"
+            }
+          }
+        }
+      }
+    },
+    "/v1/logStaff": {
+      "get": {
+        "tags": [
+          "Staff"
+        ],
+        "summary": "業務人員紀錄列表",
+        "parameters": [
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_7"
+            }
+          }
+        }
+      }
+    },
+    "/v1/logStore": {
+      "get": {
+        "tags": [
+          "Store"
+        ],
+        "summary": "經銷商紀錄列表",
+        "parameters": [
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_7"
+            }
+          }
+        }
+      }
+    },
+    "/v1/rebaseCard": {
+      "post": {
+        "tags": [
+          "Card"
+        ],
+        "summary": "退回加密卡",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul>><li>cardNumber: 卡片號碼</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.reqRebaseCards"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v1/redeem": {
+      "post": {
+        "tags": [
+          "Redeem"
+        ],
+        "summary": "兌換加密卡",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>userId: 用戶ID</li><li>cardNumber: 卡片號碼</li><li>password: Vendor密碼</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.reqRedeemCard"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v1/storeLastTrxRecord": {
+      "post": {
+        "tags": [
+          "Trx Record"
+        ],
+        "summary": "經銷商最新訂單紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>store_id: 經銷商ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.reqStoreLastTransact"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_8"
+            }
+          }
+        }
+      }
+    },
+    "/v1/version": {
+      "get": {
+        "tags": [
+          "Version"
+        ],
+        "summary": "取得app version",
+        "parameters": [
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_9"
+            }
+          }
+        }
+      }
+    },
+    "/v2/addStore": {
+      "post": {
+        "tags": [
+          "Store"
+        ],
+        "summary": "新增經銷商",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>name: 經銷商名稱</li><li>ip: 經銷商ID</li><li>availableBalance: 可銷售額度</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.addStoreRequestV3"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v2/addSymbolAmount": {
+      "post": {
+        "tags": [
+          "Symbol Amount"
+        ],
+        "summary": "幣種增加面額",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>symbol: 幣種</li><li>amount: 數量</li><li>abbr: 前綴</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.CardsSetRequest"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v2/checkCards": {
+      "post": {
+        "tags": [
+          "Card"
+        ],
+        "summary": "檢查開卡",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>trxId: 訂單ID</li><li>cardNumbers: 卡片號碼</li><li>boxNumbers: 卡盒號碼</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.reqCheckCards"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_10"
+            }
+          }
+        }
+      }
+    },
+    "/v2/editPrice": {
+      "post": {
+        "tags": [
+          "Overview"
+        ],
+        "summary": "編輯匯率",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>symbol: 幣種</li><li>currency: 法幣</li><li>price: 買入價格</li><li>cost: 賣出價格</li><li>storeId: 經銷商ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.reqEditPriceV2"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v2/editStore": {
+      "post": {
+        "tags": [
+          "Store"
+        ],
+        "summary": "編輯經銷商",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 經銷商ID</li><li>name: 經銷商名稱</li><li>ip: 經銷商ID</li><li>availableBalance: 可銷售額度</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.editStoreRequestV2"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v2/forgetAuth": {
+      "post": {
+        "tags": [
+          "Forget Psd Auth"
+        ],
+        "summary": "忘記密碼發送驗證碼",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>username: 使用者名稱</li><li>code: 驗證碼</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.reqForgetPwd"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_11"
+            }
+          }
+        }
+      }
+    },
+    "/v2/forgetPwd": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "summary": "忘記密碼，生成臨時密碼",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>username: 使用者名稱</li><li>code: 驗證碼</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.reqForgetPwd"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_11"
+            }
+          }
+        }
+      }
+    },
+    "/v2/initSymbol": {
+      "get": {
+        "tags": [
+          "Overview"
+        ],
+        "summary": "初始化幣對",
+        "parameters": [
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_12"
+            }
+          }
+        }
+      }
+    },
+    "/v2/listStore": {
+      "get": {
+        "tags": [
+          "Store"
+        ],
+        "summary": "查看經銷商列表",
+        "parameters": [
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_13"
+            }
+          }
+        }
+      }
+    },
+    "/v2/login": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "summary": "登入",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>username: 帳號</li><li>password: 密碼</li><li>emailCode: 信箱驗證碼</li><li>googleCode: google 2FA驗證碼</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.LoginRequest"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_14"
+            }
+          }
+        }
+      }
+    },
+    "/v2/loginAuth": {
+      "get": {
+        "tags": [
+          "Login"
+        ],
+        "summary": "發送登入驗證碼",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_11"
+            }
+          }
+        }
+      }
+    },
+    "/v2/openCards": {
+      "post": {
+        "tags": [
+          "Card"
+        ],
+        "summary": "開卡",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>trxId: 訂單ID</li><li>receiveCurrency: 接受法幣</li><li>invoice: 發票號碼</li><li>googleCode: google 2FA驗證碼</li><li>staffPwd: 業務人員密碼</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.reqOpenCardV2"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v2/overview": {
+      "post": {
+        "tags": [
+          "Overview"
+        ],
+        "summary": "首頁總覽",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>startAt: 起始時間</li><li>endAt: 結束時間</li><li>storeId: 經銷商ID</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.reqOverview"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_15"
+            }
+          }
+        }
+      }
+    },
+    "/v2/previewListTrxRecords": {
+      "post": {
+        "tags": [
+          "Trx Record"
+        ],
+        "summary": "預覽CSV數據訊息",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>startAt: 起始時間</li><li>endAt: 結束時間</li><li>storeId: 經銷商ID</li><li>email: 信箱</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.reqExportListTrxRecords"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_16"
+            }
+          }
+        }
+      }
+    },
+    "/v2/restPwd": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "summary": "重置密碼",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>username: 使用者名稱</li><li>tempPwd: 臨時密碼</li><li>newPwd: 新密碼</li><li>googleCode: google 2FA驗證碼</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.RestPwdRequest"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v2/resumeTempTrx": {
+      "post": {
+        "tags": [
+          "Card"
+        ],
+        "summary": "開卡回退",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>trxId: 訂單ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.reqResumeTrx"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_17"
+            }
+          }
+        }
+      }
+    },
+    "/v2/showEditPrice": {
+      "post": {
+        "tags": [
+          "Overview"
+        ],
+        "summary": "首頁編輯匯率展示",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>storeId: 經銷商ID</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.reqShowEdit"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_18"
+            }
+          }
+        }
+      }
+    },
+    "/v2/staffActivate": {
+      "post": {
+        "tags": [
+          "Staff Active"
+        ],
+        "summary": "啟用業務人員",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>username: 業務人員名稱</li><li>password: 密碼</li><li>googleAuthCode: google 2FA驗證碼</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.StaffActivate"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "BearerAuth": {
+      "description": "token 格式為 `Bearer ${apiToken}`",
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "main.CardStatus": {
+      "type": "string",
+      "enum": [
+        "NEW",
+        "READY",
+        "PENDING",
+        "OPEN",
+        "CANCEL",
+        "EXPIRED",
+        "USED",
+        "COMPANY_MISSED",
+        "CUSTOMER_MISSED",
+        "RETURNED",
+        "ADMIN"
+      ],
+      "x-enum-comments": {
+        "CardStatusAdmin": "管理員修改紀錄",
+        "CardStatusCancel": "取消，作廢",
+        "CardStatusExpired": "逾時",
+        "CardStatusMissedCompany": "公司遺失",
+        "CardStatusMissedCustomer": "客戶遺失",
+        "CardStatusNew": "新卡(在總部)",
+        "CardStatusOpen": "開卡",
+        "CardStatusPending": "等候",
+        "CardStatusReady": "準備(待開卡)",
+        "CardStatusReturned": "退貨",
+        "CardStatusUsed": "已使用(兌換)"
+      },
+      "x-enum-varnames": [
+        "CardStatusNew",
+        "CardStatusReady",
+        "CardStatusPending",
+        "CardStatusOpen",
+        "CardStatusCancel",
+        "CardStatusExpired",
+        "CardStatusUsed",
+        "CardStatusMissedCompany",
+        "CardStatusMissedCustomer",
+        "CardStatusReturned",
+        "CardStatusAdmin"
+      ]
+    },
+    "main.CardsSetRequest": {
+      "type": "object",
+      "properties": {
+        "abbr": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        }
+      }
+    },
+    "main.CardsetCount": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.CryptoCard": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string",
+          "description": "面額 EX: 0.1 BTC"
+        },
+        "boxId": {
+          "type": "integer",
+          "description": "盒編號"
+        },
+        "boxNumber": {
+          "type": "string",
+          "description": "盒號"
+        },
+        "cardNumber": {
+          "type": "string",
+          "description": "卡片序號"
+        },
+        "createAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "currency": {
+          "$ref": "main.CryptoCard_currency"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "openStaffId": {
+          "type": "integer",
+          "description": "開卡人 , Staff ID(UID)"
+        },
+        "setAbbr": {
+          "type": "string"
+        },
+        "setId": {
+          "type": "integer",
+          "description": "卡片型號"
+        },
+        "status": {
+          "$ref": "main.CryptoCard_status"
+        },
+        "store": {
+          "type": "string",
+          "description": "目前卡片位址"
+        },
+        "storeId": {
+          "type": "integer",
+          "description": "目前卡片位址，預設: 公司(ACE)"
+        },
+        "symbol": {
+          "$ref": "main.CryptoCard_symbol"
+        },
+        "symbolCost": {
+          "type": "string",
+          "description": "幣種成本"
+        },
+        "symbolPrice": {
+          "type": "string",
+          "description": "幣種當下價格(對照法幣)"
+        },
+        "trxId": {
+          "type": "integer"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "usdtChainId": {
+          "type": "integer",
+          "description": "USDT 鏈別"
+        }
+      }
+    },
+    "main.CryptoCardBox": {
+      "type": "object",
+      "properties": {
+        "boxNumber": {
+          "type": "string"
+        },
+        "cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.CryptoCard"
+          }
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "endCard": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "setId": {
+          "type": "integer"
+        },
+        "startCard": {
+          "type": "string"
+        },
+        "store": {
+          "type": "string"
+        },
+        "storeId": {
+          "type": "integer"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "main.CryptoCardSet": {
+      "type": "object",
+      "properties": {
+        "abbr": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "boxes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.CryptoCardBox"
+          }
+        },
+        "cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.CryptoCard"
+          }
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "main.CurrencyType": {
+      "type": "string",
+      "enum": [
+        "TWD",
+        "RMB"
+      ],
+      "x-enum-varnames": [
+        "CurrencyTwd",
+        "CurrencyRmb"
+      ]
+    },
+    "main.DeletedAt": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string"
+        },
+        "valid": {
+          "type": "boolean",
+          "description": "Valid is true if Time is not NULL"
+        }
+      }
+    },
+    "main.DistributeStaffRequest": {
+      "type": "object",
+      "properties": {
+        "storeId": {
+          "type": "integer"
+        },
+        "uids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "main.EditStaffRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "storeId": {
+          "type": "integer"
+        },
+        "uid": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.ErrorCode": {
+      "type": "integer",
+      "enum": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "-1",
+        "-2",
+        "-3",
+        "-4",
+        "-5",
+        "-6",
+        "-7",
+        "-8",
+        "-9",
+        "-10",
+        "-11",
+        "-12",
+        "-13",
+        "-14",
+        "-15",
+        "-16",
+        "-17",
+        "-18",
+        "-19",
+        "-20",
+        "-21",
+        "-22",
+        "-23",
+        "-24",
+        "-25",
+        "-26",
+        "-27",
+        "-28",
+        "-29",
+        "-30",
+        "-31",
+        "-32",
+        "-33",
+        "-34",
+        "-35",
+        "-36",
+        "-37",
+        "-38",
+        "-39",
+        "-41",
+        "-43",
+        "-46",
+        "-47",
+        "-48",
+        "-49",
+        "-50",
+        "-51",
+        "-999"
+      ],
+      "x-enum-comments": {
+        "ErrorActivation": "Already activated",
+        "ErrorCodeMaintain": "Mainain ing",
+        "ErrorCodePassword": "Password error",
+        "ErrorConnection": "Connection error",
+        "ErrorDataUpdate": "Data update error",
+        "ErrorInvliadInvoice": "Invoice invoice error",
+        "ErrorNotActivation": "Not activated",
+        "ErrorPasswordForm": "Password not available, too short or concluding special symbol",
+        "ErrorPermission": "Permission error",
+        "ErrorUsername": "Username not exist error",
+        "ErrorValueNull": "Missing value"
+      },
+      "x-enum-varnames": [
+        "ErrorCodeUnknow",
+        "ErrorCodeOK",
+        "ErrorCodeChangePassword",
+        "ErrorCodeNewMember",
+        "ErrorCodeOther",
+        "ErrorCodeParameter",
+        "ErrorCodeMember",
+        "ErrorCodeToken",
+        "ErrorCodeGetAuthCode",
+        "ErrorCodeAccountDuplicate",
+        "ErrorCodeAuthCode",
+        "ErrorPermission",
+        "ErrorActivation",
+        "ErrorNotActivation",
+        "ErrorWrongStatus",
+        "ErrorWrongStore",
+        "ErrorCardWithWrongStatus",
+        "ErrorCardWithWrongStore",
+        "ErrorCardRepeat",
+        "ErrorNoneValidItem",
+        "ErrorLowerReceive",
+        "ErrorSameLastValue",
+        "ErrorLowerEndAt",
+        "ErrorUsername",
+        "ErrorCodePassword",
+        "ErrorForm",
+        "ErrorLowStoreBalance",
+        "ErrorTimeout",
+        "ErrorSign",
+        "ErrorRepeatMail",
+        "ErrorInvalidIp",
+        "ErrorRepeatItem",
+        "ErrorCodeMaintain",
+        "ErrorValueNull",
+        "ErrorPasswordForm",
+        "ErrorExpired",
+        "ErrorExpiredTrx",
+        "ErrorCardUsed",
+        "ErrorCardInvalidStatus",
+        "ErrorCardErrTries",
+        "ErrorConnection",
+        "ErrorDataUpdate",
+        "ErrorInvliadInvoice",
+        "ErrorBlockUserLogin",
+        "ErrorSymbolOverMax",
+        "ErrorUpdateCoinPairs",
+        "ErrorFrequentRequest",
+        "ErrorLoginFailed",
+        "ErrorEnterAmount",
+        "ErrorCardPassword",
+        "ErrorInvalidSymbolPair",
+        "ErrorCodeVersion"
+      ]
+    },
+    "main.LogRecord": {
+      "type": "object",
+      "properties": {
+        "createAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "info": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "main.LoginRequest": {
+      "type": "object",
+      "properties": {
+        "emailCode": {
+          "type": "string"
+        },
+        "googleCode": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "main.LoginResponse": {
+      "type": "object",
+      "properties": {
+        "flage": {
+          "type": "integer"
+        },
+        "token": {
+          "type": "string"
+        },
+        "urlAuthSecret": {
+          "type": "string"
+        },
+        "usertype": {
+          "$ref": "main.LoginResponse_usertype"
+        }
+      }
+    },
+    "main.Member": {
+      "type": "object",
+      "properties": {
+        "auth_secret": {
+          "type": "string"
+        },
+        "createAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "store": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string",
+          "description": "email"
+        },
+        "userType": {
+          "$ref": "main.Member_userType"
+        }
+      }
+    },
+    "main.PreviewCardCountInfo": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "cardNumber": {
+          "type": "string"
+        },
+        "cardTotal": {
+          "type": "string"
+        },
+        "twTotalAmount": {
+          "type": "string"
+        }
+      }
+    },
+    "main.PreviewCardsInfo": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "cardNumber": {
+          "type": "string"
+        },
+        "createAt": {
+          "type": "string"
+        },
+        "invoice": {
+          "type": "string"
+        },
+        "redeemName": {
+          "type": "string"
+        },
+        "storeName": {
+          "type": "string"
+        }
+      }
+    },
+    "main.PreviewResponseData": {
+      "type": "object",
+      "properties": {
+        "feeCount": {
+          "type": "string"
+        },
+        "previewCardsAmountInfo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.PreviewCardCountInfo"
+          }
+        },
+        "previewCardsDataInfo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.PreviewCardsInfo"
+          }
+        }
+      }
+    },
+    "main.RedeemRecord": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "cardNumber": {
+          "type": "string"
+        },
+        "create_at": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "redeemVendor": {
+          "type": "string"
+        },
+        "setAbbr": {
+          "type": "string"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.RedeemVendor": {
+      "type": "object",
+      "properties": {
+        "apiKey": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "main.Response": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "$ref": "#/definitions/main.ErrorCode"
+        },
+        "data": {},
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "main.RestPwdRequest": {
+      "type": "object",
+      "properties": {
+        "googleCode": {
+          "type": "string"
+        },
+        "newPwd": {
+          "type": "string"
+        },
+        "tempPwd": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "main.SendAuthCodeResponse": {
+      "type": "object",
+      "properties": {
+        "timeout": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.StaffActivate": {
+      "type": "object",
+      "properties": {
+        "googleAuthCode": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "main.Store": {
+      "type": "object",
+      "properties": {
+        "available_balance": {
+          "type": "string"
+        },
+        "cardBoxes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.CryptoCardBox"
+          }
+        },
+        "cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.CryptoCard"
+          }
+        },
+        "createAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "isHq": {
+          "type": "boolean"
+        },
+        "member_name": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "new_ip": {
+          "type": "string"
+        },
+        "staffList": {
+          "type": "array",
+          "description": "有哪些店員",
+          "items": {
+            "$ref": "#/definitions/main.Member"
+          }
+        },
+        "transacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.TransactRecord"
+          }
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "usdtCountNumber": {
+          "type": "integer",
+          "description": "usdt的总数"
+        }
+      }
+    },
+    "main.StoreLastTxResp": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string"
+        }
+      }
+    },
+    "main.SymbolCurrency": {
+      "type": "object",
+      "properties": {
+        "createAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "currency": {
+          "$ref": "#/definitions/main.CurrencyType"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "symbolPrice": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "main.SymbolCurrencyCost": {
+      "type": "object",
+      "properties": {
+        "cost": {
+          "type": "string"
+        },
+        "createAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "currency": {
+          "$ref": "#/definitions/main.CurrencyType"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "main.SymbolCurrencyPrice": {
+      "type": "object",
+      "properties": {
+        "cost": {
+          "type": "string"
+        },
+        "currency": {
+          "$ref": "#/definitions/main.CurrencyType"
+        },
+        "price": {
+          "type": "string"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        }
+      }
+    },
+    "main.SymbolInfo": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "string"
+        },
+        "currencyPrice": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "feeRate": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "precision": {
+          "type": "integer"
+        },
+        "sequence": {
+          "type": "integer"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "main.SymbolType": {
+      "type": "string",
+      "enum": [
+        "ERC20-USDT",
+        "TRC20-USDT",
+        "BTC",
+        "ETH",
+        "USDT"
+      ],
+      "x-enum-varnames": [
+        "SymbolErcUsdt",
+        "SymbolTrcUsdt",
+        "SymbolBtc",
+        "SymbolEth",
+        "SymbolUsdt"
+      ]
+    },
+    "main.TempCheckRequest": {
+      "type": "object",
+      "properties": {
+        "boxNumbers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cardNumbers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "trxId": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.TransactRecord": {
+      "type": "object",
+      "properties": {
+        "cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.CryptoCard"
+          }
+        },
+        "createAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "currency": {
+          "$ref": "#/definitions/main.CurrencyType"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "fee": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "invoice": {
+          "type": "string",
+          "description": "電子發票"
+        },
+        "ip": {
+          "type": "string",
+          "description": "店家IP"
+        },
+        "openStaff": {
+          "type": "string"
+        },
+        "receiveCurrency": {
+          "type": "string"
+        },
+        "sets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.CardsetCount"
+          }
+        },
+        "soldPrice": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "main.TransactRecord_status"
+        },
+        "store": {
+          "type": "string"
+        },
+        "storeId": {
+          "type": "integer"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "main.TransactRecordTemp": {
+      "type": "object",
+      "properties": {
+        "OpenStaffId": {
+          "type": "integer"
+        },
+        "cardCount": {
+          "type": "integer"
+        },
+        "fee": {
+          "type": "string"
+        },
+        "openStaff": {
+          "type": "string"
+        },
+        "soldPrice": {
+          "type": "string"
+        },
+        "usdtCountNumber": {
+          "type": "number"
+        }
+      }
+    },
+    "main.UserType": {
+      "type": "string",
+      "enum": [
+        "admin",
+        "staff"
+      ],
+      "x-enum-comments": {
+        "UserAdmin": "業務",
+        "UserStaff": "店員"
+      },
+      "x-enum-varnames": [
+        "UserAdmin",
+        "UserStaff"
+      ]
+    },
+    "main.addStaffRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "storeId": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.addStoreRequestV3": {
+      "type": "object",
+      "properties": {
+        "trcAvailableBalance": {
+          "type": "string"
+        },
+        "availableBalance": {
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "main.delStaffRequest": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.delStoreRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.distributeCardboxRequest": {
+      "type": "object",
+      "properties": {
+        "boxNumber": {
+          "type": "string"
+        },
+        "storeId": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.distributeCardsRequest": {
+      "type": "object",
+      "properties": {
+        "cardNumbers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "storeId": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.editCardsRequest": {
+      "type": "object",
+      "properties": {
+        "cardNumber": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/main.CardStatus"
+        }
+      }
+    },
+    "main.editStoreRequestV2": {
+      "type": "object",
+      "properties": {
+        "trcAvailableBalance": {
+          "type": "string"
+        },
+        "availableBalance": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "main.generateCardRequest": {
+      "type": "object",
+      "properties": {
+        "numberInBox": {
+          "type": "integer"
+        },
+        "numberOfBox": {
+          "type": "integer"
+        },
+        "setId": {
+          "type": "integer"
+        },
+        "usdtChainId": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.reqCheckCards": {
+      "type": "object",
+      "properties": {
+        "boxNumbers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cardNumbers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "trxId": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.reqDetailTrxRecord": {
+      "type": "object",
+      "properties": {
+        "trxId": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.reqEditPriceV2": {
+      "type": "object",
+      "properties": {
+        "cost": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "price": {
+          "type": "string"
+        },
+        "storeId": {
+          "type": "integer"
+        },
+        "symbol": {
+          "type": "string"
+        }
+      }
+    },
+    "main.reqExportListTrxRecords": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "endAt": {
+          "type": "integer"
+        },
+        "startAt": {
+          "type": "integer"
+        },
+        "storeId": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.reqForgetPwd": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "main.reqGenRedeemoVendor": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "main.reqListCard": {
+      "type": "object",
+      "properties": {
+        "asc": {
+          "type": "integer"
+        },
+        "boxNumber": {
+          "type": "string"
+        },
+        "cardNumber": {
+          "type": "string"
+        },
+        "end": {
+          "type": "string"
+        },
+        "endAt": {
+          "type": "integer"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "start": {
+          "type": "string"
+        },
+        "startAt": {
+          "type": "integer"
+        },
+        "status": {
+          "$ref": "#/definitions/main.CardStatus"
+        },
+        "storeId": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.reqListRedeemRecord": {
+      "type": "object",
+      "properties": {
+        "asc": {
+          "type": "integer"
+        },
+        "endAt": {
+          "type": "integer"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "redeemId": {
+          "type": "integer"
+        },
+        "startAt": {
+          "type": "integer"
+        },
+        "vendor": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.reqListTrxRrecord": {
+      "type": "object",
+      "properties": {
+        "asc": {
+          "type": "integer"
+        },
+        "endAt": {
+          "type": "integer"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "startAt": {
+          "type": "integer"
+        },
+        "status": {
+          "$ref": "#/definitions/main.CardStatus"
+        },
+        "storeId": {
+          "type": "integer"
+        },
+        "trxId": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.reqOpenCardV2": {
+      "type": "object",
+      "properties": {
+        "googleCode": {
+          "type": "string"
+        },
+        "invoice": {
+          "type": "string"
+        },
+        "receiveCurrency": {
+          "type": "string"
+        },
+        "staffPwd": {
+          "type": "string"
+        },
+        "trxId": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.reqOverview": {
+      "type": "object",
+      "properties": {
+        "endAt": {
+          "type": "integer"
+        },
+        "startAt": {
+          "type": "integer"
+        },
+        "storeId": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.reqRebaseCards": {
+      "type": "object",
+      "properties": {
+        "cardNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "main.reqRedeemCard": {
+      "type": "object",
+      "properties": {
+        "cardNumber": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.reqResumeTrx": {
+      "type": "object",
+      "properties": {
+        "trxId": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.reqShowEdit": {
+      "type": "object",
+      "properties": {
+        "storeId": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.reqStoreLastTransact": {
+      "type": "object",
+      "properties": {
+        "store_id": {
+          "type": "string"
+        }
+      }
+    },
+    "main.respAppVersion": {
+      "type": "object",
+      "properties": {
+        "minVersion": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "main.respSymbolData": {
+      "type": "object",
+      "properties": {
+        "currency": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.CurrencyType"
+          }
+        },
+        "symbol": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.SymbolInfo"
+          }
+        }
+      }
+    },
+    "main.respdataOverviewV2": {
+      "type": "object",
+      "properties": {
+        "costs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.SymbolCurrencyCost"
+          }
+        },
+        "prices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.SymbolCurrency"
+          }
+        },
+        "ercUsdtCosts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.SymbolCurrencyCost"
+          }
+        },
+        "ercUsdtPrices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.SymbolCurrency"
+          }
+        },
+        "trcUsdtCosts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.SymbolCurrencyCost"
+          }
+        },
+        "trcUsdtPrices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.SymbolCurrency"
+          }
+        },
+        "sets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.CardsetCount"
+          }
+        },
+        "storeId": {
+          "type": "integer"
+        },
+        "totalSoldPrice": {
+          "type": "string"
+        },
+        "totalSoldPriceCurrency": {
+          "$ref": "#/definitions/main.CurrencyType"
+        }
+      }
+    },
+    "main.respdataShowEditV2": {
+      "type": "object",
+      "properties": {
+        "costs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.SymbolCurrencyCost"
+          }
+        },
+        "prices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.SymbolCurrency"
+          }
+        },
+        "ercUsdtCosts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.SymbolCurrencyCost"
+          }
+        },
+        "ercUsdtPrices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.SymbolCurrency"
+          }
+        },
+        "trcUsdtCosts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.SymbolCurrencyCost"
+          }
+        },
+        "trcUsdtPrices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.SymbolCurrency"
+          }
+        },
+        "storeId": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.responseCheckCards": {
+      "type": "object",
+      "properties": {
+        "cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.CryptoCard"
+          }
+        },
+        "createAt": {
+          "type": "string"
+        },
+        "currency": {
+          "$ref": "#/definitions/main.CurrencyType"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "price": {
+          "type": "string"
+        },
+        "prices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.SymbolCurrencyPrice"
+          }
+        },
+        "sets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.CardsetCount"
+          }
+        },
+        "totalFee": {
+          "type": "string"
+        },
+        "trxId": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.tempCheckCards": {
+      "type": "object",
+      "properties": {
+        "cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.CryptoCard"
+          }
+        },
+        "checkRequest": {
+          "$ref": "#/definitions/main.TempCheckRequest"
+        },
+        "trxRecordTemp": {
+          "$ref": "#/definitions/main.TransactRecordTemp"
+        }
+      }
+    },
+    "inline_response_200": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.RedeemVendor"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_1": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.CryptoCard"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_2": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.TransactRecord"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_3": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.CryptoCardBox"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_4": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.CryptoCardSet"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_5": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.RedeemRecord"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_6": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.Member"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_7": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.LogRecord"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_8": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.StoreLastTxResp"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_9": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.respAppVersion"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_10": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.responseCheckCards"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_11": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.SendAuthCodeResponse"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_12": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.respSymbolData"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_13": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.Store"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_14": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.LoginResponse"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_15": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.respdataOverviewV2"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_16": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.PreviewResponseData"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_17": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.tempCheckCards"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_18": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.respdataShowEditV2"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "main.CryptoCard_currency": {
+      "type": "object",
+      "description": "販賣法幣幣種 EX: TWD, CNY"
+    },
+    "main.CryptoCard_status": {
+      "type": "object",
+      "description": "卡片狀態 NEW, READY, OPEN, CANCEL, USED , STOLLEN"
+    },
+    "main.CryptoCard_symbol": {
+      "type": "object",
+      "description": "交易幣種"
+    },
+    "main.LoginResponse_usertype": {
+      "type": "object",
+      "description": "Permission string `json:\"permission\"`"
+    },
+    "main.Member_userType": {
+      "type": "object",
+      "description": "管理員，店員"
+    },
+    "main.TransactRecord_status": {
+      "type": "object",
+      "description": "NEW, EXPIRED, OPEN"
+    }
+  }
+}
