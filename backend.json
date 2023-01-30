@@ -1,0 +1,5881 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "<h3>Alfred Wallet backend API文件</h3></br><h4>Header參數說明：</h4><ul><li>x-LANGUAGE: 使用語言，測試可以使用tw</li><li>x-TIMESTAMP: 時間戳</li><li>x-VERSION: 版本，測試用0.0.1</li><li>x-PLATFORM: 平台，測試可使用web</li><li>x-SIGNATURE: 為language+platform+timestamp做MD5加密後的簽名</li><li>x-TOKEN: 登入後得到的token</li></ul>",
+    "version": "1.0.0",
+    "title": "Alfred Wallet backend API",
+    "contact": {}
+  },
+  "host": "alfadmin.guanfantech.com",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/hello": {
+      "get": {
+        "tags": [
+          "Tool"
+        ],
+        "summary": "api 健康狀況",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v1/activateStaff": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "啟用使用者",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>username: 使用者帳號</li><li>password: 使用者密碼</li><li>authCode: Google 2FA驗證碼</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.LoginRequest"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v1/addStaff": {
+      "post": {
+        "tags": [
+          "Staffs"
+        ],
+        "summary": "新增後台Staff",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>name: 後台人員名稱</li><li>mail: 後台人員信箱</li><li>usertype: 後台人員type</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.reqAddStaff"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v1/deactivateMember": {
+      "post": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "停用用戶",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 用戶ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v1/forgetPwd": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "忘記密碼",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>username: 使用者帳號</li><li>authCode: Google 2FA驗證碼</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.reqForgetPwd"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getCoinInfos": {
+      "get": {
+        "tags": [
+          "Settings"
+        ],
+        "summary": "虛擬幣資訊",
+        "parameters": [
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_1"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getCombosets": {
+      "get": {
+        "tags": [
+          "Settings"
+        ],
+        "summary": "取得定投套餐資料",
+        "parameters": [
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_2"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getInvestCoinInfos": {
+      "get": {
+        "tags": [
+          "Settings"
+        ],
+        "summary": "理財虛擬幣資訊",
+        "parameters": [
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_3"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getMemberWalletDetail": {
+      "post": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "查詢用戶錢包資訊",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 錢包地址ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_4"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getPeriodPurchaseFees": {
+      "post": {
+        "tags": [
+          "Fees"
+        ],
+        "summary": "查詢錢包手續費",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>trxID: 交易ID</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getRecordDetailDeposit": {
+      "post": {
+        "tags": [
+          "Record Wallet"
+        ],
+        "summary": "查詢存幣紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 存幣紀錄ID</li><li>uid: 使用者ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_6"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getRecordDetailLock": {
+      "post": {
+        "tags": [
+          "Record Invest"
+        ],
+        "summary": "查詢鎖倉紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 鎖倉紀錄ID</li><li>uid: 使用者ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_7"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getRecordDetailLockProcess": {
+      "post": {
+        "tags": [
+          "Record Invest"
+        ],
+        "summary": "查詢鎖倉紀錄進度",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 鎖倉紀錄ID</li><li>uid: 使用者ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getRecordDetailPeriodPurchase": {
+      "post": {
+        "tags": [
+          "Record Invest"
+        ],
+        "summary": "查詢定投紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 定投紀錄ID</li><li>uid: 使用者ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_8"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getRecordDetailPeriodPurchaseProcess": {
+      "post": {
+        "tags": [
+          "Record Invest"
+        ],
+        "summary": "查詢定投紀錄進度",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 定投紀錄ID</li><li>uid: 使用者ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getRecordDetailRedeem": {
+      "post": {
+        "tags": [
+          "Record Invest"
+        ],
+        "summary": "查詢加密卡兌換紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 加密卡兌換紀錄ID</li><li>uid: 使用者ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_9"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getRecordDetailSwap": {
+      "post": {
+        "tags": [
+          "Record Wallet"
+        ],
+        "summary": "查詢閃兑紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 閃兌紀錄ID</li><li>uid: 使用者ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_10"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getRecordDetailTransferInvest": {
+      "post": {
+        "tags": [
+          "Record Invest"
+        ],
+        "summary": "查詢理財劃轉錢包紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 劃轉紀錄ID</li><li>uid: 使用者ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_11"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getRecordDetailTransferWallet": {
+      "post": {
+        "tags": [
+          "Record Wallet"
+        ],
+        "summary": "查詢劃轉錢包紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 劃轉紀錄ID</li><li>uid: 使用者ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_11"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getRecordDetailWithdraw": {
+      "post": {
+        "tags": [
+          "Record Wallet"
+        ],
+        "summary": "查詢提幣紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 提幣紀錄ID</li><li>uid: 使用者ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_12"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getStaffs": {
+      "post": {
+        "tags": [
+          "Staffs"
+        ],
+        "summary": "查詢後台Staff",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 後台人員ID</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getSwapFees": {
+      "post": {
+        "tags": [
+          "Fees"
+        ],
+        "summary": "查詢閃兌手續費",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>trxID: 交易ID</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getSystemFee": {
+      "post": {
+        "tags": [
+          "System Level"
+        ],
+        "summary": "查詢手續費",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>from: 起始時間</li><li>to: 結束時間</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_13"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getWalletFees": {
+      "post": {
+        "tags": [
+          "System Level"
+        ],
+        "summary": "查詢錢包手續費",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>type: 錢包action type</li><li>trxID: 交易ID</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v1/getWithdrawFees": {
+      "post": {
+        "tags": [
+          "Fees"
+        ],
+        "summary": "查詢提幣手續費",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>trxID: 交易ID</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v1/resetStaffPwd": {
+      "post": {
+        "tags": [
+          "Staffs"
+        ],
+        "summary": "重設Staff密碼",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>mail: 後台人員信箱</li><li>pwdOld: 舊密碼</li><li>pwdNew: 新密碼</li><li>authCode: google 2FA驗證碼</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.reqResetStaffPassword"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v2/addWhiteList": {
+      "post": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "新增白名單",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>uid: 使用者ID</li><li>whiteType: 白名單type</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.reqAddWhiteLists"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v2/deactivateWhiteList": {
+      "post": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "取消白名單",
+        "parameters": [],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v2/getInvestRecords": {
+      "post": {
+        "tags": [
+          "Record Invest"
+        ],
+        "summary": "查詢理財紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>type: 錢包動作紀錄type</li><li>trxID: 劃轉ID</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v2/getMember": {
+      "post": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "查詢單一用戶資訊",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 使用者ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_14"
+            }
+          }
+        }
+      }
+    },
+    "/v2/getMemberInvestingGoods": {
+      "post": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "查詢用戶理財資產",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 使用者ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v2/getMembers": {
+      "post": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "查詢用戶資訊",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 使用者ID</li><li>from: 查詢起始時間</li><li>to: 查詢結束時間</li><li>status: 使用者狀態</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v2/getSystemLevel": {
+      "post": {
+        "tags": [
+          "System Level"
+        ],
+        "summary": "查詢即時水位",
+        "parameters": [
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_15"
+            }
+          }
+        }
+      }
+    },
+    "/v2/getTpSettings": {
+      "post": {
+        "tags": [
+          "Settings"
+        ],
+        "summary": "查詢Tokenpro地址",
+        "parameters": [
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_16"
+            }
+          }
+        }
+      }
+    },
+    "/v2/getWalletRecords": {
+      "post": {
+        "tags": [
+          "Record Wallet"
+        ],
+        "summary": "查詢所有錢包紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>type: 錢包動作紀錄type</li><li>trxID: 劃轉ID</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v2/getWalletTransactionRecords": {
+      "post": {
+        "tags": [
+          "Record Wallet"
+        ],
+        "summary": "查詢劃轉紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>uid: 使用者ID</li><li>WalletID: 錢包ID</li><li>symbol: 幣別</li>/ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v2/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "使用者登入",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>username: 使用者帳號</li><li>password: 使用者密碼</li><li>authCode: Google 2FA驗證碼</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.LoginRequest"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_17"
+            }
+          }
+        }
+      }
+    },
+    "/v3/getInvestTransferAuditDetail": {
+      "post": {
+        "tags": [
+          "Invest Transfer Record"
+        ],
+        "summary": "理財提幣/劃轉審核詳情紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 使用者ID</li><li>type: 提幣type</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.WithdrawTransferDetailReq"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_11"
+            }
+          }
+        }
+      }
+    },
+    "/v3/getInvestTransferAuditList": {
+      "post": {
+        "tags": [
+          "Invest Transfer Record"
+        ],
+        "summary": "理財提幣/劃轉審核紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>uid: 使用者ID</li><li>type: 提幣type</li><li>auditStatus: 審核狀態</li><li>startTime: 起始時間</li><li>endTime: 結束時間</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.WithdrawTransferReq"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v3/getInvestTransferAuditListRecently": {
+      "post": {
+        "tags": [
+          "Invest Transfer Record"
+        ],
+        "summary": "最近十筆理財提幣/劃轉審核紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>uid: 使用者ID</li><li>type: 提幣type</li><li>auditStatus: 審核狀態</li><li>startTime: 起始時間</li><li>endTime: 結束時間</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.WithdrawTransferReq"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v3/getRecommendedCodeDetail": {
+      "post": {
+        "tags": [
+          "Recommended Code"
+        ],
+        "summary": "查询指定用户的推薦碼詳情+累計返佣總數",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>uid: 使用者ID</li><li>id: 推薦碼ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.GetRecommendedCodeDetail"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_18"
+            }
+          }
+        }
+      }
+    },
+    "/v3/getRecommendedCodeList": {
+      "post": {
+        "tags": [
+          "Recommended Code"
+        ],
+        "summary": "獲取推薦碼列表",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>uid: 使用者ID</li><li>startTime: 起始時間</li><li>endTime: 結束時間</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.GetRecommendedCode"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_19"
+            }
+          }
+        }
+      }
+    },
+    "/v3/getRecommendedCodeRecordList": {
+      "post": {
+        "tags": [
+          "Recommended Code"
+        ],
+        "summary": "獲取當前用戶的下線的返佣紀錄列表",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>uid: 使用者ID</li><li>id: 推薦碼ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.GetRecommendedCodeDetail"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_20"
+            }
+          }
+        }
+      }
+    },
+    "/v3/getSystemLevelHistory": {
+      "post": {
+        "tags": [
+          "System Level"
+        ],
+        "summary": "查詢歷史水位",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>startTime: 起始時間</li><li>endTime: 結束時間</li>/ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.SysLevelHistoryReq"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_21"
+            }
+          }
+        }
+      }
+    },
+    "/v3/getWhiteList": {
+      "post": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "查詢白名單",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>uid: 使用者ID</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.ReqItems"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v3/getWithdrawTransferAuditDetail": {
+      "post": {
+        "tags": [
+          "Withdraw Transfer Record"
+        ],
+        "summary": "查詢提幣訂單詳情紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 使用者ID</li><li>type: 提幣type</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.WithdrawTransferDetailReq"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_12"
+            }
+          }
+        }
+      }
+    },
+    "/v3/getWithdrawTransferAuditList": {
+      "post": {
+        "tags": [
+          "Withdraw Transfer Record"
+        ],
+        "summary": "查詢提幣審核紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>uid: 使用者ID</li><li>type: 提幣type</li><li>auditStatus: 審核狀態</li><li>startTime: 起始時間</li><li>endTime: 結束時間</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.WithdrawTransferReq"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v3/getWithdrawTransferAuditListRecently": {
+      "post": {
+        "tags": [
+          "Withdraw Transfer Record"
+        ],
+        "summary": "查詢最近十筆提幣審核紀錄",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>uid: 使用者ID</li><li>type: 提幣type</li><li>auditStatus: 審核狀態</li><li>startTime: 起始時間</li><li>endTime: 結束時間</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.WithdrawTransferReq"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v3/investTransferAudit": {
+      "post": {
+        "tags": [
+          "Invest Transfer Record"
+        ],
+        "summary": "理財提幣/劃轉審核",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>ids: 待審核ID</li><li>uid: 使用者ID</li><li>status: 審核狀態</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.WithdrawTransferAuditReq"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v3/recommendedCodeGenerate": {
+      "post": {
+        "tags": [
+          "Recommended Code"
+        ],
+        "summary": "生成推薦碼",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>uid: 使用者ID</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.GenerateRecommendedCode"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v3/withdrawTransferAudit": {
+      "post": {
+        "tags": [
+          "Withdraw Transfer Record"
+        ],
+        "summary": "提幣審核",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>ids: 待審核ID</li><li>uid: 使用者ID</li><li>status: 審核狀態</li></ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.WithdrawTransferAuditReq"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/main.Response"
+            }
+          }
+        }
+      }
+    },
+    "/v3/withdrawTransferAuditRecord": {
+      "post": {
+        "tags": [
+          "Withdraw Transfer Record"
+        ],
+        "summary": "提幣/劃轉審核紀錄列表",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>uid: 使用者ID</li><li>type: 提幣type</li><li>auditStatus: 審核狀態</li><li>startTime: 起始時間</li><li>endTime: 結束時間</li></ul>",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/main.WithdrawTransferReq"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          }
+        }
+      }
+    },
+    "/v3/withdrawTransferAuditRecordDetail": {
+      "post": {
+        "tags": [
+          "Withdraw Transfer Record"
+        ],
+        "summary": "提幣/劃轉審核紀錄詳情",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "request",
+            "description": "<ul><li>id: 提幣紀錄ID</li><li>type: 提幣type</li><</ul>",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/main.WithdrawTransferDetailReq"
+            }
+          },
+          {
+            "name": "x-LANGUAGE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TIMESTAMP",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-VERSION",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-PLATFORM",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-SIGNATURE",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-TOKEN",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_22"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "BearerAuth": {
+      "description": "token 格式為 `Bearer ${apiToken}`",
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "main.ActionType": {
+      "type": "string",
+      "enum": [
+        "deposit",
+        "withdraw",
+        "withdrawReturn",
+        "lock",
+        "interest",
+        "swap",
+        "withdrawInterest",
+        "internalWithdraw",
+        "spot",
+        "collectCombo",
+        "interestReward",
+        "lockCombo",
+        "periodPurchaseCost",
+        "periodPurchaseReturn",
+        "transferWallet2Invest",
+        "transferInvest2Wallet",
+        "redeemCard",
+        "commision",
+        "withdrawFee",
+        "AcceptTransferWallet2Invest",
+        "AcceptTransferInvest2Wallet"
+      ],
+      "x-enum-comments": {
+        "ActionAcceptTransferInvest2Wallet": "Transfer invest to wallet 劃轉:  理財錢包 -> 一般錢包   一般錢包Server收到\b\b處理",
+        "ActionAcceptTransferWallet2Invest": "Transfer wallet to invest  劃轉:  一般錢包-> 理財錢包    理財錢包Server收到\b\b處理",
+        "ActionCollectCombo": "Collect Combo  領取套餐",
+        "ActionCommision": "返佣",
+        "ActionDeposit": "Deposit   入幣",
+        "ActionInterest": "Give Interest  發利息",
+        "ActionInterestReward": "Interest reward for sales   業務獎金",
+        "ActionInternalWithdraw": "Internal Withdraw  內部轉帳",
+        "ActionLock": "Lock   鎖倉",
+        "ActionLockCombo": "Combo lock   套餐鎖倉",
+        "ActionPeriodicPurchaseCost": "Periodic Purchase cost  定投費用",
+        "ActionPeriodicPurchaseReturn": "Periodic Purchase  return  定投返還",
+        "ActionRedeemCard": "兌換加密卡",
+        "ActionSwap": "Swap    閃兌",
+        "ActionTransferInvest2Wallet": "Transfer invest to wallet",
+        "ActionTransferWallet2Invest": "Transfer wallet to invest",
+        "ActionTrxSpot": "Transaction  現貨",
+        "ActionWithdraw": "Withdraw  提幣",
+        "ActionWithdrawFee": "提幣手續費",
+        "ActionWithdrawInterest": "Withdraw Interest  挖礦的提領利息",
+        "ActionWithdrawReturn": "提幣失敗退款"
+      },
+      "x-enum-varnames": [
+        "ActionDeposit",
+        "ActionWithdraw",
+        "ActionWithdrawReturn",
+        "ActionLock",
+        "ActionInterest",
+        "ActionSwap",
+        "ActionWithdrawInterest",
+        "ActionInternalWithdraw",
+        "ActionTrxSpot",
+        "ActionCollectCombo",
+        "ActionInterestReward",
+        "ActionLockCombo",
+        "ActionPeriodicPurchaseCost",
+        "ActionPeriodicPurchaseReturn",
+        "ActionTransferWallet2Invest",
+        "ActionTransferInvest2Wallet",
+        "ActionRedeemCard",
+        "ActionCommision",
+        "ActionWithdrawFee",
+        "ActionAcceptTransferWallet2Invest",
+        "ActionAcceptTransferInvest2Wallet"
+      ]
+    },
+    "main.Address": {
+      "type": "object",
+      "properties": {
+        "addressBsc": {
+          "type": "string",
+          "description": "TRC 地址"
+        },
+        "addressBtc": {
+          "type": "string",
+          "description": "BTC 地址"
+        },
+        "addressEth": {
+          "type": "string",
+          "description": "ETH 地址"
+        },
+        "addressTrx": {
+          "type": "string",
+          "description": "TRC 地址"
+        },
+        "atCreate": {
+          "type": "integer"
+        },
+        "balances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.SymbolBalance"
+          }
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/main.ProcessStatus"
+        },
+        "uid": {
+          "type": "integer"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "walletID": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.AuditRecordDetail": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "amountActual": {
+          "type": "string",
+          "description": "扣除手續費實收"
+        },
+        "auditStatus": {
+          "$ref": "#/definitions/main.ProcessStatus"
+        },
+        "auditTime": {
+          "type": "integer"
+        },
+        "auditUser": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "integer"
+        },
+        "fee": {
+          "type": "string"
+        },
+        "feeSymbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "to": {
+          "type": "string"
+        },
+        "trxID": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/main.ActionType"
+        },
+        "uid": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.ChainType": {
+      "type": "string",
+      "enum": [
+        "BTC",
+        "ETH",
+        "TRX",
+        "BSC",
+        "FTM"
+      ],
+      "x-enum-varnames": [
+        "BTCChain",
+        "ETHChain",
+        "TRONChain",
+        "BSCChain",
+        "FTMChain"
+      ]
+    },
+    "main.CoinInfos": {
+      "type": "object",
+      "properties": {
+        "chain": {
+          "type": "string"
+        },
+        "change": {
+          "type": "string"
+        },
+        "icon_url": {
+          "type": "string"
+        },
+        "inWithdrawFees": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.withdrawFee"
+          }
+        },
+        "isCredit": {
+          "type": "boolean"
+        },
+        "outWithdrawFees": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.withdrawFee"
+          }
+        },
+        "precision": {
+          "type": "integer"
+        },
+        "price": {
+          "type": "string"
+        },
+        "sequence": {
+          "type": "integer"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        }
+      }
+    },
+    "main.ComboMineType": {
+      "type": "string",
+      "enum": [
+        "COMBO",
+        "MINING"
+      ],
+      "x-enum-varnames": [
+        "TypeCombo",
+        "TypeMining"
+      ]
+    },
+    "main.ComboSet": {
+      "type": "object",
+      "properties": {
+        "annotation": {
+          "type": "string"
+        },
+        "atEnd": {
+          "type": "integer"
+        },
+        "atStart": {
+          "type": "integer"
+        },
+        "banner_url": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "duration_day": {
+          "type": "string"
+        },
+        "end_time": {
+          "type": "string"
+        },
+        "i_r_r": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Model         `json:\"-\"`"
+        },
+        "minLock": {
+          "type": "string"
+        },
+        "minWithdraw": {
+          "type": "string"
+        },
+        "minetype": {
+          "$ref": "#/definitions/main.ComboMineType"
+        },
+        "sales_i_r_r": {
+          "type": "string"
+        },
+        "salescommission": {
+          "type": "boolean"
+        },
+        "start_time": {
+          "type": "string"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        }
+      }
+    },
+    "main.Commission": {
+      "type": "object",
+      "properties": {
+        "balance": {
+          "type": "string"
+        },
+        "symbol": {
+          "type": "string"
+        }
+      }
+    },
+    "main.CommissionRecord": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer"
+        },
+        "bindUID": {
+          "type": "integer"
+        },
+        "commissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.Commission"
+          }
+        },
+        "time": {
+          "type": "string"
+        }
+      }
+    },
+    "main.CommissionResp": {
+      "type": "object",
+      "properties": {
+        "commissionRecord": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.CommissionRecord"
+          }
+        },
+        "total": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.DeletedAt": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string"
+        },
+        "valid": {
+          "type": "boolean",
+          "description": "Valid is true if Time is not NULL"
+        }
+      }
+    },
+    "main.Deposit": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "atCreate": {
+          "type": "integer"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "from": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/main.ProcessStatus"
+        },
+        "symbol": {
+          "$ref": "main.Deposit_symbol"
+        },
+        "to": {
+          "type": "string"
+        },
+        "trxID": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "integer",
+          "description": "Member ID"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "main.ErrorCode": {
+      "type": "integer",
+      "enum": [
+        "0",
+        "1",
+        "-1",
+        "-2",
+        "-3",
+        "-4",
+        "-5",
+        "-6",
+        "-7",
+        "-8",
+        "-9",
+        "-10",
+        "-11",
+        "-12",
+        "-13"
+      ],
+      "x-enum-comments": {
+        "ErrorInvalidAction": "無效動作",
+        "ErrorInvalidAuthCode": "授權碼失效",
+        "ErrorMember": "會員不存在",
+        "ErrorNullValue": "無項目",
+        "ErrorOK": "完成",
+        "ErrorOther": "其他錯誤",
+        "ErrorParameter": "參數錯誤",
+        "ErrorPasswordForm": "密碼格式",
+        "ErrorPermission": "權限",
+        "ErrorRepeatItem": "項目重複",
+        "ErrorTimeinterval": "時間區間",
+        "ErrorToken": "token失效",
+        "ErrorUnknow": "不明",
+        "ErrorVersion": "版本不符",
+        "ErrorWalletDeleted": "錢包已經被刪除"
+      },
+      "x-enum-varnames": [
+        "ErrorUnknow",
+        "ErrorOK",
+        "ErrorOther",
+        "ErrorParameter",
+        "ErrorMember",
+        "ErrorToken",
+        "ErrorInvalidAction",
+        "ErrorNullValue",
+        "ErrorInvalidAuthCode",
+        "ErrorVersion",
+        "ErrorRepeatItem",
+        "ErrorPasswordForm",
+        "ErrorTimeinterval",
+        "ErrorPermission",
+        "ErrorWalletDeleted"
+      ]
+    },
+    "main.GenerateRecommendedCode": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.GetRecommendedCode": {
+      "type": "object",
+      "properties": {
+        "endTime": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "pageCount": {
+          "type": "integer"
+        },
+        "startTime": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.GetRecommendedCodeDetail": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "endTime": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "pageCount": {
+          "type": "integer"
+        },
+        "startTime": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.InvestBalance": {
+      "type": "object",
+      "properties": {
+        "balance": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "freezeBalance": {
+          "type": "string"
+        },
+        "iconUrl": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "main.InvestCoinInfos": {
+      "type": "object",
+      "properties": {
+        "chain": {
+          "type": "string"
+        },
+        "icon_url": {
+          "type": "string"
+        },
+        "isCredit": {
+          "type": "boolean"
+        },
+        "precision": {
+          "type": "integer"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        }
+      }
+    },
+    "main.ItemFeeRecord": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "$ref": "#/definitions/main.ActionType"
+        },
+        "atCreate": {
+          "type": "integer"
+        },
+        "fee": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "trxID": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/main.RecordTableType"
+        },
+        "uid": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.ItemGetMembers": {
+      "type": "object",
+      "properties": {
+        "addresses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.Address"
+          }
+        },
+        "createAt": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "mail": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/main.ProcessStatus"
+        }
+      }
+    },
+    "main.ItemMemberTrxRecord": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "$ref": "#/definitions/main.ActionType"
+        },
+        "afterAmount": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "atCreate": {
+          "type": "integer"
+        },
+        "beforeAmount": {
+          "type": "string"
+        },
+        "exchangeRate": {
+          "type": "string"
+        },
+        "fee": {
+          "type": "string"
+        },
+        "iconUrl": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "inCoin": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "outCoin": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "status": {
+          "type": "string"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "title": {
+          "type": "string"
+        },
+        "trxID": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/main.RecordTableType"
+        },
+        "uid": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.LockOrder": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string",
+          "description": "鎖倉數量"
+        },
+        "atRealUnlock": {
+          "type": "integer"
+        },
+        "atStart": {
+          "type": "integer"
+        },
+        "atUnlock": {
+          "type": "integer"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "id": {
+          "type": "string"
+        },
+        "interestAvailable": {
+          "type": "string",
+          "description": "挖礦收益，未領出"
+        },
+        "inviteCode": {
+          "type": "string",
+          "description": "上線邀請碼"
+        },
+        "lockInterest": {
+          "type": "string",
+          "description": "挖礦收益6%"
+        },
+        "lockInterest3": {
+          "type": "string",
+          "description": "挖礦收益3%"
+        },
+        "lockInterestInc": {
+          "type": "string",
+          "description": "挖礦收益6%一小時增加"
+        },
+        "lockInterestInc3": {
+          "type": "string",
+          "description": "挖礦收益3%一小時增加"
+        },
+        "minetype": {
+          "$ref": "#/definitions/main.ComboMineType"
+        },
+        "orderset": {
+          "type": "integer"
+        },
+        "parent": {
+          "type": "integer",
+          "description": "parent"
+        },
+        "status": {
+          "$ref": "#/definitions/main.LockStatus"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "trxID": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "integer",
+          "description": "Member ID"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "main.LockStatus": {
+      "type": "string",
+      "enum": [
+        "LOCKING",
+        "UNLOCKING",
+        "COLLECT",
+        "LOCKFINISH",
+        "COLLECT3",
+        "LOCKFINISH3",
+        "COLLECTCOMBO",
+        "COMBOFINISH"
+      ],
+      "x-enum-comments": {
+        "Collect3Status": "三年可領回收益",
+        "CollectComboStatus": "可領回套餐",
+        "CollectStatus": "可領回收益",
+        "ComboFinishStatus": "套餐完成",
+        "LockFinish3Status": "三年後挖礦完成",
+        "LockFinishStatus": "挖礦完成",
+        "LockingStatus": "鎖倉中",
+        "UnlockingStatus": "解鎖中"
+      },
+      "x-enum-varnames": [
+        "LockingStatus",
+        "UnlockingStatus",
+        "CollectStatus",
+        "LockFinishStatus",
+        "Collect3Status",
+        "LockFinish3Status",
+        "CollectComboStatus",
+        "ComboFinishStatus"
+      ]
+    },
+    "main.LoginRequest": {
+      "type": "object",
+      "properties": {
+        "authCode": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "main.LoginResponse": {
+      "type": "object",
+      "properties": {
+        "imageServerUrl": {
+          "type": "string"
+        },
+        "isForget": {
+          "type": "boolean"
+        },
+        "token": {
+          "type": "string"
+        },
+        "urlAuthSecret": {
+          "type": "string"
+        },
+        "usertype": {
+          "$ref": "main.LoginResponse_usertype"
+        }
+      }
+    },
+    "main.Member": {
+      "type": "object",
+      "properties": {
+        "addresses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.Address"
+          }
+        },
+        "atCreate": {
+          "type": "integer"
+        },
+        "balances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.SymbolBalance"
+          }
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "investBalances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.InvestBalance"
+          }
+        },
+        "inviteCode": {
+          "type": "string",
+          "description": "別人推薦碼"
+        },
+        "inviteCodeSelf": {
+          "type": "string",
+          "description": "個人推薦碼"
+        },
+        "mail": {
+          "type": "string",
+          "description": "email  (unique_index) must be unique_index, not uniqueIndex"
+        },
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "main.Member_status"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "main.PeriodType": {
+      "type": "string",
+      "enum": [
+        "5m",
+        "10m",
+        "30m",
+        "1h",
+        "2h",
+        "4h",
+        "8h",
+        "1d",
+        "7d",
+        "14d",
+        "30d"
+      ],
+      "x-enum-varnames": [
+        "PeriodMin5",
+        "PeriodMin10",
+        "PeriodMin30",
+        "PeriodHour1",
+        "PeriodHour2",
+        "PeriodHour4",
+        "PeriodHour8",
+        "PeriodDay1",
+        "PeriodDay7",
+        "PeriodDay14",
+        "PeriodDay30"
+      ]
+    },
+    "main.PeriodicPurchase": {
+      "type": "object",
+      "properties": {
+        "atCreate": {
+          "type": "integer"
+        },
+        "atEnd": {
+          "type": "integer"
+        },
+        "avgPrice": {
+          "type": "string"
+        },
+        "base": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "countProcess": {
+          "type": "integer"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "endAt": {
+          "type": "string"
+        },
+        "feeSymbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "feeTotal": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "period": {
+          "$ref": "#/definitions/main.PeriodType"
+        },
+        "qtyBaseCurrent": {
+          "type": "string"
+        },
+        "qtyQuoteRemain": {
+          "type": "string"
+        },
+        "qtyQuoteTotal": {
+          "type": "string"
+        },
+        "qtyQuoteUnit": {
+          "type": "string"
+        },
+        "qtyQuoteUsed": {
+          "type": "string"
+        },
+        "quote": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "returnRate": {
+          "type": "string"
+        },
+        "returnValue": {
+          "type": "string"
+        },
+        "startAt": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/main.ProcessStatus"
+        },
+        "trxID": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "integer"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "main.PeriodicPurchaseProcess": {
+      "type": "object",
+      "properties": {
+        "atCreate": {
+          "type": "integer"
+        },
+        "base": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "price": {
+          "type": "string"
+        },
+        "qtyBase": {
+          "type": "string"
+        },
+        "qtyQuote": {
+          "type": "string"
+        },
+        "quote": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "status": {
+          "$ref": "#/definitions/main.ProcessStatus"
+        },
+        "time": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "main.ProcessStatus": {
+      "type": "string",
+      "enum": [
+        "new",
+        "run",
+        "approveUser",
+        "approveSystem",
+        "approveVendor",
+        "approveOuter",
+        "approveAuthority",
+        "done",
+        "partialDone",
+        "pending",
+        "pendingCancel",
+        "waitConfirm",
+        "waitConfirmProblem",
+        "cancel",
+        "cancelUser",
+        "cancelSystem",
+        "cancelVendor",
+        "cancelAuthority",
+        "fail",
+        "failUser",
+        "failSystem",
+        "failVendor",
+        "expired",
+        "reject",
+        "auditSuccess",
+        "auditFailure",
+        "auditNot"
+      ],
+      "x-enum-comments": {
+        "AuditFailure": "审核不通过/失败",
+        "AuditNot": "未审核",
+        "AuditSuccess": "审核成功"
+      },
+      "x-enum-varnames": [
+        "ProcessNew",
+        "ProcessRun",
+        "ProcessApproveUser",
+        "ProcessApproveSystem",
+        "ProcessApproveVendor",
+        "ProcessApproveOuter",
+        "ProcessApproveAuthority",
+        "ProcessDone",
+        "ProcessDonePartial",
+        "ProcessPending",
+        "ProcessPendingCancel",
+        "ProcessWaitConfirm",
+        "ProcessWaitConfirmProblem",
+        "ProcessCancel",
+        "ProcessCancelByUser",
+        "ProcessCancelBySystem",
+        "ProcessCancelByVendor",
+        "ProcessCancelByAuthority",
+        "ProcessFail",
+        "ProcessFailByUser",
+        "ProcessFailBySystem",
+        "ProcessFailByVendor",
+        "ProcessExpired",
+        "ProcessReject",
+        "AuditSuccess",
+        "AuditFailure",
+        "AuditNot"
+      ]
+    },
+    "main.RecommendedCode": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "createUser": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "uid": {
+          "type": "integer"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "main.RecommendedCodeDetailResp": {
+      "type": "object",
+      "properties": {
+        "accCommission": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.Commission"
+          }
+        },
+        "code": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.RecommendedCodeResp": {
+      "type": "object",
+      "properties": {
+        "recommendedCode": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.RecommendedCode"
+          }
+        },
+        "total": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.Record": {
+      "type": "object",
+      "properties": {
+        "actionType": {
+          "$ref": "main.Record_actionType"
+        },
+        "addressId": {
+          "type": "integer",
+          "description": "\"\""
+        },
+        "after_amount": {
+          "type": "string",
+          "description": "更改後Amount"
+        },
+        "amount": {
+          "type": "string",
+          "description": "扣除手續費"
+        },
+        "atCreate": {
+          "type": "integer"
+        },
+        "before_amount": {
+          "type": "string",
+          "description": "更改前Amount"
+        },
+        "block_number": {
+          "type": "integer"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "fee": {
+          "type": "string"
+        },
+        "fee_symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "from": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "in": {
+          "type": "string"
+        },
+        "orderset": {
+          "type": "integer"
+        },
+        "out": {
+          "type": "string"
+        },
+        "realAmount": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/main.ProcessStatus"
+        },
+        "symbol": {
+          "$ref": "main.Record_symbol"
+        },
+        "time": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "trx_id": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "integer",
+          "description": "Member ID"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "wallet_id": {
+          "type": "string",
+          "description": "劃轉用"
+        },
+        "wallet_name": {
+          "type": "string"
+        }
+      }
+    },
+    "main.RecordTableType": {
+      "type": "string",
+      "enum": [
+        "lock_orders",
+        "symbol_balances",
+        "invest_balances",
+        "transfer_wallets",
+        "members",
+        "withdraws",
+        "deposits",
+        "redeem_records",
+        "periodic_purchases",
+        "periodic_purchase_processes",
+        "swap_records"
+      ],
+      "x-enum-varnames": [
+        "RecordTableLockOrder",
+        "RecordTableSymbolBalance",
+        "RecordTableInvest",
+        "RecordTableTransferWallet",
+        "RecordTableMember",
+        "RecordTableWithdraw",
+        "RecordTableDeposit",
+        "RecordTableRedeemCard",
+        "RecordTablePeriodPurchase",
+        "RecordTablePeriodPurchaseProcess",
+        "RecordTableSwap"
+      ]
+    },
+    "main.RedeemRecord": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "atCreate": {
+          "type": "integer"
+        },
+        "cardNumber": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/main.ProcessStatus"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "trxID": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "integer"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "walletID": {
+          "type": "string"
+        },
+        "walletName": {
+          "type": "string"
+        }
+      }
+    },
+    "main.ReqItems": {
+      "type": "object",
+      "properties": {
+        "WalletID": {
+          "type": "integer"
+        },
+        "from": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "status": {
+          "$ref": "#/definitions/main.ProcessStatus"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "to": {
+          "type": "integer"
+        },
+        "trxID": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/main.RecordTableType"
+        },
+        "uid": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.RespListItem": {
+      "type": "object",
+      "properties": {
+        "items": {},
+        "total": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.Response": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "$ref": "#/definitions/main.ErrorCode"
+        },
+        "data": {},
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "main.SendAuthCodeResponse": {
+      "type": "object",
+      "properties": {
+        "timeout": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.Staff": {
+      "type": "object",
+      "properties": {
+        "atCreate": {
+          "type": "integer"
+        },
+        "createAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "isActivated": {
+          "type": "boolean",
+          "description": "店員是否被啟動"
+        },
+        "mail": {
+          "type": "string",
+          "description": "email"
+        },
+        "name": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "userType": {
+          "$ref": "main.Staff_userType"
+        }
+      }
+    },
+    "main.SwapRecord": {
+      "type": "object",
+      "properties": {
+        "atCreate": {
+          "type": "integer"
+        },
+        "base": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "fee": {
+          "type": "string"
+        },
+        "feeSymbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "id": {
+          "type": "string"
+        },
+        "price": {
+          "type": "string"
+        },
+        "priceEst": {
+          "type": "string"
+        },
+        "qtyIn": {
+          "type": "string"
+        },
+        "qtyInSymbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "qtyOut": {
+          "type": "string"
+        },
+        "qtyOutSymbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "quote": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "side": {
+          "$ref": "#/definitions/main.SwapSideType"
+        },
+        "status": {
+          "$ref": "#/definitions/main.ProcessStatus"
+        },
+        "trxID": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "walletID": {
+          "type": "string"
+        },
+        "walletName": {
+          "type": "string"
+        }
+      }
+    },
+    "main.SwapSideType": {
+      "type": "string",
+      "enum": [
+        "buy",
+        "sell"
+      ],
+      "x-enum-varnames": [
+        "SwapSideBuy",
+        "SwapSideSell"
+      ]
+    },
+    "main.SymbolBalance": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "balance": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "freezeBalance": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "walletID": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.SymbolType": {
+      "type": "string",
+      "enum": [
+        "ERC20-USDT",
+        "TRC20-USDT",
+        "BEP20-USDT",
+        "BEP20-DAI",
+        "BEP20-USDC",
+        "BEP20-BUSD",
+        "BEP20-MDX",
+        "BEP20-CAKE",
+        "BNB",
+        "TRX",
+        "BTC",
+        "ETH",
+        "USDT"
+      ],
+      "x-enum-varnames": [
+        "SymbolErcUsdt",
+        "SymbolTrcUsdt",
+        "SymbolBscUsdt",
+        "SymbolBscDai",
+        "SymbolBscUsdc",
+        "SymbolBscBusd",
+        "SymbolBscMdx",
+        "SymbolBscCake",
+        "SymbolBnb",
+        "SymbolTrx",
+        "SymbolBtc",
+        "SymbolEth",
+        "SymbolUsdt"
+      ]
+    },
+    "main.SysLevelHistoryReq": {
+      "type": "object",
+      "properties": {
+        "endTime": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "pageCount": {
+          "type": "integer"
+        },
+        "startTime": {
+          "type": "string"
+        }
+      }
+    },
+    "main.SysLevelHistoryResp": {
+      "type": "object",
+      "properties": {
+        "sysLevelList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.respSysLevelV3"
+          }
+        },
+        "total": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.TransferWallet": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "atCreate": {
+          "type": "integer"
+        },
+        "auditStatus": {
+          "$ref": "#/definitions/main.ProcessStatus"
+        },
+        "auditTime": {
+          "type": "string"
+        },
+        "auditUser": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "from": {
+          "type": "string",
+          "description": "WalletID or invest wallet"
+        },
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/main.ProcessStatus"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "symbolTarget": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "to": {
+          "type": "string",
+          "description": "WalletID or invest wallet"
+        },
+        "trxID": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "integer"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "wallet_id": {
+          "type": "string",
+          "description": "劃轉用"
+        },
+        "walletName": {
+          "type": "string"
+        }
+      }
+    },
+    "main.UserType": {
+      "type": "string",
+      "enum": [
+        "admin",
+        "owner",
+        "read_only",
+        "engineer"
+      ],
+      "x-enum-varnames": [
+        "UserAdmin",
+        "UserOwner",
+        "UserReadOnly",
+        "UserEngineer"
+      ]
+    },
+    "main.WhiteListItem": {
+      "type": "object",
+      "properties": {
+        "UnAuditAmount": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "uid": {
+          "type": "integer"
+        },
+        "userName": {
+          "type": "string",
+          "description": "email"
+        },
+        "whitetype": {
+          "$ref": "#/definitions/main.WhiteType"
+        }
+      }
+    },
+    "main.WhiteType": {
+      "type": "string",
+      "enum": [
+        "VIP"
+      ],
+      "x-enum-varnames": [
+        "WhiteTypeVIP"
+      ]
+    },
+    "main.Withdraw": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "amountActual": {
+          "type": "string",
+          "description": "扣除手續費實收"
+        },
+        "atCreate": {
+          "type": "integer"
+        },
+        "auditStatus": {
+          "$ref": "#/definitions/main.ProcessStatus"
+        },
+        "auditTime": {
+          "type": "string"
+        },
+        "auditUser": {
+          "type": "string"
+        },
+        "chain": {
+          "$ref": "#/definitions/main.ChainType"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "$ref": "#/definitions/main.DeletedAt"
+        },
+        "fee": {
+          "type": "string"
+        },
+        "feeSymbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "from": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isInner": {
+          "type": "boolean"
+        },
+        "status": {
+          "$ref": "#/definitions/main.ProcessStatus"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "to": {
+          "type": "string"
+        },
+        "tpOrderID": {
+          "type": "string"
+        },
+        "trxID": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "integer"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "walletID": {
+          "type": "integer"
+        },
+        "walletName": {
+          "type": "string"
+        }
+      }
+    },
+    "main.WithdrawAuditRecord": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "auditStatus": {
+          "$ref": "#/definitions/main.ProcessStatus"
+        },
+        "auditTime": {
+          "type": "integer"
+        },
+        "auditUser": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "type": {
+          "$ref": "#/definitions/main.ActionType"
+        },
+        "uid": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.WithdrawTransferAuditReq": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "status": {
+          "type": "boolean"
+        },
+        "uid": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.WithdrawTransferDetailReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "main.WithdrawTransferRecord": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "amountActual": {
+          "type": "string",
+          "description": "扣除手續費實收"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "status": {
+          "$ref": "#/definitions/main.ProcessStatus"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        },
+        "type": {
+          "$ref": "#/definitions/main.RecordTableType"
+        },
+        "uid": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.WithdrawTransferReq": {
+      "type": "object",
+      "properties": {
+        "auditStatus": {
+          "type": "string"
+        },
+        "endTime": {
+          "type": "string"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "pageCount": {
+          "type": "integer"
+        },
+        "startTime": {
+          "type": "string"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.itemGetFee": {
+      "type": "object",
+      "properties": {
+        "atCreate": {
+          "type": "integer"
+        },
+        "fee": {
+          "type": "string"
+        },
+        "feeSymbol": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "trxID": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "integer"
+        }
+      }
+    },
+    "main.reqAddStaff": {
+      "type": "object",
+      "properties": {
+        "mail": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "usertype": {
+          "type": "string"
+        }
+      }
+    },
+    "main.reqAddWhiteLists": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "integer"
+        },
+        "whiteType": {
+          "type": "string"
+        }
+      }
+    },
+    "main.reqForgetPwd": {
+      "type": "object",
+      "properties": {
+        "authCode": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      }
+    },
+    "main.reqResetStaffPassword": {
+      "type": "object",
+      "properties": {
+        "authCode": {
+          "type": "string"
+        },
+        "mail": {
+          "type": "string"
+        },
+        "pwdNew": {
+          "type": "string"
+        },
+        "pwdOld": {
+          "type": "string"
+        }
+      }
+    },
+    "main.respGetFees": {
+      "type": "object",
+      "properties": {
+        "periodFees": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.sysFee"
+          }
+        },
+        "swapFees": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.sysFee"
+          }
+        },
+        "withdrawFees": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.sysFee"
+          }
+        }
+      }
+    },
+    "main.respSysLevel": {
+      "type": "object",
+      "properties": {
+        "ftxLevels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.syslevelData"
+          }
+        },
+        "memberPropertys": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.syslevelMemberProperty"
+          }
+        },
+        "time": {
+          "type": "integer"
+        },
+        "tokenproLevels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.syslevelTokenpro"
+          }
+        }
+      }
+    },
+    "main.respSysLevelV3": {
+      "type": "object",
+      "properties": {
+        "memberPropertys": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.syslevelMemberProperty"
+          }
+        },
+        "time": {
+          "type": "integer"
+        },
+        "tokenproLevels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.syslevelTokenpro"
+          }
+        },
+        "aceGlobalLevels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.syslevelData"
+          }
+        },
+        "aceTaiwanLevels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.syslevelData"
+          }
+        },
+        "ftxLevels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.syslevelData"
+          }
+        }
+      }
+    },
+    "main.sysFee": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "symbol": {
+          "type": "string"
+        }
+      }
+    },
+    "main.syslevelData": {
+      "type": "object",
+      "properties": {
+        "iconUrl": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string"
+        },
+        "symbol": {
+          "type": "string"
+        }
+      }
+    },
+    "main.syslevelMemberProperty": {
+      "type": "object",
+      "properties": {
+        "iconUrl": {
+          "type": "string"
+        },
+        "investFreeze": {
+          "type": "string"
+        },
+        "investTotal": {
+          "type": "string"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "walletFreeze": {
+          "type": "string"
+        },
+        "walletTotal": {
+          "type": "string"
+        }
+      }
+    },
+    "main.syslevelTokenpro": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "addressReplenish": {
+          "type": "string"
+        },
+        "iconUrl": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string"
+        },
+        "levelReplenish": {
+          "type": "string"
+        },
+        "symbol": {
+          "type": "string"
+        }
+      }
+    },
+    "main.withdrawFee": {
+      "type": "object",
+      "properties": {
+        "fee": {
+          "type": "string"
+        },
+        "symbol": {
+          "$ref": "#/definitions/main.SymbolType"
+        }
+      }
+    },
+    "inline_response_200": {
+      "type": "object",
+      "properties": {
+        "Data": {
+          "$ref": "#/definitions/main.SendAuthCodeResponse"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_1": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.CoinInfos"
+          }
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_2": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.ComboSet"
+          }
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_3": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/main.InvestCoinInfos"
+          }
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_4": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.Address"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_5_data": {
+      "type": "object"
+    },
+    "inline_response_200_5": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/inline_response_200_5_data"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_6": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.Deposit"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_7": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.LockOrder"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_8": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.PeriodicPurchase"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_9": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.RedeemRecord"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_10": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.SwapRecord"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_11": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.TransferWallet"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_12": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.Withdraw"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_13": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.respGetFees"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_14": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.Member"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_15": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.respSysLevelV3"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_16": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.syslevelTokenpro"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_17": {
+      "type": "object",
+      "properties": {
+        "Data": {
+          "$ref": "#/definitions/main.LoginResponse"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_18": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.RecommendedCodeDetailResp"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_19": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.RecommendedCodeResp"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_20": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.CommissionResp"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_21": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.SysLevelHistoryResp"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "inline_response_200_22": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/main.AuditRecordDetail"
+        },
+        "main.Response": {
+          "$ref": "#/definitions/main.Response"
+        }
+      }
+    },
+    "main.Deposit_symbol": {
+      "type": "object",
+      "description": "\"ERC20-USDT\", \"ETH\""
+    },
+    "main.LoginResponse_usertype": {
+      "type": "object",
+      "description": "Permission string `json:\"permission\"`"
+    },
+    "main.Member_status": {
+      "type": "object",
+      "description": "Usertype     UserType `gorm:\"index;not null\"` //業務"
+    },
+    "main.Record_actionType": {
+      "type": "object",
+      "description": "Deposit, Withdraw, Lock, Interest"
+    },
+    "main.Record_symbol": {
+      "type": "object",
+      "description": "\" json:\"symbol,omitempty\"`       // \"USDT\", \"USDG\", \"BTC\",\"ETH\""
+    },
+    "main.Staff_userType": {
+      "type": "object",
+      "description": "管理員，店員"
+    }
+  }
+}
